@@ -32,7 +32,6 @@ record(ao,"$(P)SetFrequency"){
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].Spd_S=")
     field(PREC, "2")
-    field(SCAN, "I/O Intr")
     field(EGU, "Hz")
 }
 
@@ -66,6 +65,6 @@ record(mbbo, "$(P)SendCommandString"){
     field(ONST, "Start")
     field(TWST, "Stop")
     field(THST, "Clear Alarms")
-    field(OUT,"$(P)SendCommand")
+    field(OUT,"$(P)SendCommand PP")
     field(DESC, "Send commands using string")
 }
