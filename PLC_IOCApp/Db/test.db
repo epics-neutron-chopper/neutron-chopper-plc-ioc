@@ -1,0 +1,70 @@
+
+# One observation when working with PLCs needs to be mentioned here:
+# When we are unsure about the "manipulation" of values inside the PLC
+# it may be a good idea to have two variables:
+# One "setpoint variable" connected to an EPICS output record,
+# one "readback variable" connected to an EPICS input record.
+# So we end up with 2 records: SetFAmplitude_S (setpoint)
+# and SetFAmplitude_RB (readback).
+# As a theoretical example:
+# The user sets an amplitude of 99.99 (as a result of a calulation)
+# That goes into SetFAmplitude_S
+# The PLC rounds it into 100.0, because that is what the hardware can
+# achieve.
+# While ramping up, the amplitude changes between lets say 50.0 to 100.0
+# To have that value visible in an experiment log file a 3rd variable
+# may be needed: FAmplitude_Act
+
+
+#record to get current frequency
+record(ai,"$(P)GetCurrentFrequency"){
+    field(DESC, "Current Frequency")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].Spd_R?")
+    field(PREC, "2")
+    field(SCAN, "I/O Intr")
+    field(EGU, "Hz")
+}
+
+# record to set frequency
+record(ao,"$(P)SetFrequency"){
+    field(DESC, "Set Frequency")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].Spd_S=")
+    field(PREC, "2")
+    field(EGU, "Hz")
+}
+
+# record to verify is the set frequency is applied
+
+record(ai,"$(P)SetFrequencyRB"){
+    field(DESC, "Set Frequency Readback")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].SpdS_RB?")
+    field(PREC, "2")
+    field(EGU, "Hz")
+    field(SCAN, "I/O Intr")
+}
+
+# record to send commands
+
+record(ao,"$(P)SendCommand"){
+    field(DESC, "Set Command")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].C_ExecuteUser=")
+}
+
+#record to send commands using string
+
+record(mbbo, "$(P)SendCommandString"){
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "No request")
+    field(ONST, "Start")
+    field(TWST, "Stop")
+    field(THST, "Clear Alarms")
+    field(OUT,"$(P)SendCommand PP")
+    field(DESC, "Send commands using string")
+}
