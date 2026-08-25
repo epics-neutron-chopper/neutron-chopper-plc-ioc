@@ -15,12 +15,19 @@ include $(TOP)/configure/CONFIG
 PROD_IOC = PLC_IOC
 # PLC_IOC.dbd will be created and installed
 DBD += PLC_IOC.dbd
-
 # PLC_IOC.dbd will be made up from these files:
+
 PLC_IOC_DBD += base.dbd
-#PLC_IOC_DBD += drvAsynIPPort.dbd
+PLC_IOC_DBD += asyn.dbd
+PLC_IOC_DBD += drvAsynIPPort.dbd
+PLC_IOC_DBD += asynRecord.dbd
+PLC_IOC_DBD += devAsynRecord.dbd
+PLC_IOC_DBD += devAsynFloat64.dbd
+PLC_IOC_DBD += devAsynOctet.dbd
+PLC_IOC_DBD += devAsynOctetLs.dbd
 PLC_IOC_DBD += ads.dbd
 PLC_IOC_DBD += qsrv.dbd PVAServerRegister.dbd
+
 
 
 

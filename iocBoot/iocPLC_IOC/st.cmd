@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/adsExApp
+#!../../bin/linux-x86_64/PLC_IOC
 
 #
 #    This file is part of twincat-ads.
@@ -58,7 +58,7 @@ asynSetTraceMask(${ASYN_PORT}, -1, 0x41)
 
 ##############################################################################
 ############# Load records (asyn direct I/O intr):
-dbLoadRecords("db/adsTestAsyn.db","P=ADS_IOC:ASYN:,PORT=${ASYN_PORT},ADSPORT=${ADS_DEFAULT_PORT}")
+dbLoadRecords("db/test.db","P=Chopper:,PORT=${ASYN_PORT},ADSPORT=${ADS_DEFAULT_PORT}")
 
 ##############################################################################
 ############# Useful commands
