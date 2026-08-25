@@ -68,3 +68,25 @@ record(mbbo, "$(P)SendCommandString"){
     field(OUT,"$(P)SendCommand PP")
     field(DESC, "Send commands using string")
 }
+
+#record to get Motor Temperature
+record(ai,"$(P)GetMotorTemperature"){
+    field(DESC, "Current Motor Temperature")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].MtrTemp_R?")
+    field(PREC, "2")
+    field(SCAN, "I/O Intr")
+    field(EGU, "degC")
+}
+
+#record to get Drive Temperature
+record(ai,"$(P)GetDriveTemperature"){
+    field(DESC, "Current Drive Temperature")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].DrvTemp_R?")
+    field(PREC, "2")
+    field(SCAN, "I/O Intr")
+    field(EGU, "degC")
+}
+
+
