@@ -66,3 +66,4 @@ dbLoadRecords("db/test.db","P=Chopper:,PORT=${ASYN_PORT},ADSPORT=${ADS_DEFAULT_P
 #asynSetTraceMask("${ASYN_PORT}", -1, 0xFF)
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
+
