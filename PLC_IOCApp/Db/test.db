@@ -18,9 +18,7 @@
 
 #record to get current frequency
 record(ai,"$(P)GetCurrentFrequency"){
-    field(PINI, "1")
     field(DESC, "Current Frequency")
-    field(TSE,  "-2")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].Spd_R?")
     field(PREC, "2")
@@ -30,9 +28,7 @@ record(ai,"$(P)GetCurrentFrequency"){
 
 # record to set frequency
 record(ao,"$(P)SetFrequency"){
-    field(PINI, "1")
     field(DESC, "Set Frequency")
-    field(TSE,  "-2")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].Spd_S=")
     field(PREC, "2")
@@ -43,24 +39,33 @@ record(ao,"$(P)SetFrequency"){
 # record to verify is the set frequency is applied
 
 record(ai,"$(P)SetFrequencyRB"){
-    field(PINI, "1")
     field(DESC, "Set Frequency Readback")
-    field(TSE,  "-2")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].SpdS_RB?")
-    field(PREC, "3")
+    field(PREC, "2")
     field(EGU, "Hz")
     field(SCAN, "I/O Intr")
-
-    info(asyn:READBACK,"1")
 }
 
 # record to send commands
 
 record(ao,"$(P)SendCommand"){
-    field(PINI, "0")
     field(DESC, "Set Command")
-    field(TSE,  "-2")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].C_ExecuteUser=")
+}
+
+#record to send commands using string
+
+record(mbbo, "$(P)SendCommandString"){
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "No request")
+    field(ONST, "Start")
+    field(TWST, "Stop")
+    field(THST, "Clear Alarms")
+    field(OUT,"$(P)SendCommand")
+    field(DESC, "Send commands using string")
 }
