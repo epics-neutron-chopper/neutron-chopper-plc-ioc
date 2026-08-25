@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>Set Frequency</text>
+    <x>60</x>
+    <y>40</y>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry</name>
+    <pv_name>Chopper:SetFrequency</pv_name>
+    <x>230</x>
+    <y>40</y>
+    <width>160</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>Set Frequency RB</text>
+    <x>60</x>
+    <y>80</y>
+    <width>140</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>Chopper:SetFrequencyRB</pv_name>
+    <x>230</x>
+    <y>80</y>
+    <width>220</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_7</name>
+    <text>Current Frequency</text>
+    <x>60</x>
+    <y>130</y>
+    <width>170</width>
+    <height>30</height>
+  </widget>
+  <widget type="progressbar" version="2.0.0">
+    <name>Progress Bar</name>
+    <pv_name>Chopper:GetCurrentFrequency</pv_name>
+    <x>230</x>
+    <y>130</y>
+    <width>190</width>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>15.0</maximum>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_1</name>
+    <pv_name>Chopper:GetCurrentFrequency</pv_name>
+    <x>270</x>
+    <y>130</y>
+    <background_color>
+      <color name="Transparent" red="255" green="255" blue="255" alpha="0">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_8</name>
+    <text>Send Command</text>
+    <x>60</x>
+    <y>210</y>
+    <width>140</width>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>Combo Box_2</name>
+    <pv_name>Chopper:SendCommandString</pv_name>
+    <x>230</x>
+    <y>200</y>
+    <items>
+      <item>item 0</item>
+      <item>Start</item>
+      <item>Stop</item>
+      <item>Clear Alarm</item>
+    </items>
+  </widget>
+</display>
