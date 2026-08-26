@@ -89,4 +89,97 @@ record(ai,"$(P)GetDriveTemperature"){
     field(EGU, "degC")
 }
 
+record(mbbi, "$(P)CurrentStateInfo") {
+    field(DESC, "Current State Information of the chopper")
+    field(DTYPE, "asynFloat64")
+    field(INP, "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].ChopState_R?")
+
+}
+
+
+
+
+
+
+
+
+
+
+
+# setting the state of sweep programme (Not requested, Start, Stop)
+
+record (ao, "$(P)CallSweepProgram") {
+    field(DESC, "Calling the sweep programme")
+    field(ZRST, "No request")    # Option 0
+    field(ONST, "Start")   # Option 1
+    field(TWST, "Stop")    # Option 2
+     
+}
+
+# Monitoring how current frequency is different from the set frequency
+
+record(calc, "$(P)DifferenceFromSetFrequency") {
+    field(DESC, "Monitoring how current frequency is different from the set frequency")
+    field(PREC, "3")
+    field(EGU, "Hz")
+    field(INPA, "$(P)GetCurrentFrequency CP")
+    field(INPB, "$(P)SetFrequencyRB CP")
+    field(CALC, "ABS(A-B)")
+
+}
+
+#Setting the Frequency tolerance value
+record(ao, "$(P)StableFrequencyTolerance") {
+    field(DESC, "Tolerance")
+    field(EGU, "Hz")
+    field(PREC, "1")
+    # Allowable tolerance range:
+    # DRVL = minimum tolerance
+    # DRVH = maximum tolerance
+    # VAL  = initial/default tolerance
+    field(DRVL, "0.2")
+    field(DRVH, "1")
+    field(VAL, "1")
+}
+record(ao, "$(P)ApproachingFrequencyTolerance") {
+    field(DESC, "Approaching Frequency Tolerance")
+    field(EGU, "Hz")
+    field(PREC, "1")
+    # Allowable tolerance range:
+    # DRVL = minimum tolerance
+    # DRVH = maximum tolerance
+    # VAL  = initial/default tolerance
+    field(DRVL, "1")
+    field(DRVH, "4")
+    field(VAL, "1")
+}
+
+# Setting stability alarm if the current frequency is far from set frequency
+
+
+
+record(mbbi, "$(P)StabilityAlarm") {
+    field(DESC, "stability alarm if the current frequency is far from set frequency")
+    #field(INP, "$(P)StabilityCondition CP")
+    field(ZRVL, "Stable")
+    field(ONVL, "Approaching")
+    field(TWVL, "Off Target")
+}
+
+
+record(calcout, "$(P)StabilityCondition") {
+    field(DESC, "Setting stability alarm if the current frequency is far from set frequency")
+
+    field(INPA, "$(P)DifferenceFromSetFrequency CP")
+    field(INPB, "$(P)StableFrequencyTolerance CP")
+    field(INPC, "$(P)ApproachingFrequencyTolerance CP")
+    
+    field(CALC, " A<=B ? 0 : ( B<A & A<C ? 1 : 2 )")
+    field(OUT, "$(P)StabilityAlarm PP")
+}
+
+
+
+
+
 
