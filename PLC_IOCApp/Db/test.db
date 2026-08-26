@@ -174,18 +174,68 @@ record(calcout, "$(P)StabilityCondition") {
     field(CALC, " A<=B ? 0 : ( B<A & A<C ? 1 : 2 )")
     field(OUT, "$(P)StabilityAlarm PP")
 }
-
+##################################
 
 # setting the state of sweep programme (Not requested, Start, Stop)
 
-record (ao, "$(P)CallSweepProgram") {
-    field(DESC, "Calling the sweep programme")
-    field(ZRST, "No request")    # Option 0
-    field(ONST, "Start")   # Option 1
-    field(TWST, "Stop")    # Option 2
+record (bo, "$(P)EnableSweepProgram") {
+    field(DESC, "Enablingthe sweep programme")
+    field(ZNAM, "Disable")    # Option 0
+    field(ONAM, "Enable")   # Option 1
+    #field(TWST, "Stop")  # Option 2
      
 }
 
+#============================================================
+record(ao, "$(P)AskStartFrequency"){
+    field(DESC, "Ask user to give start frequency")
+    field(VAL, "0")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(FLNK, "$(P)SetStartFrequency")
+    field(SDIS,"$(P)EnableSweepProgram" )
+    field(DISV, "0")
+}
+
+record (ao, "$(P)SetStartFrequency"){
+    field(DESC, "Send Startpoint ")
+    field(INPA, "$(P)AskStartFrequency")
+    field(VAL, "A")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(OUT, "$(P)SetFrequency")
+    field(SDIS,"$(P)EnableSweepProgram" )
+    field(DISV, "0")
+   
+}
+#==========================================================
+
+record(ao, "$(P)AskEndFrequency"){
+    field(DESC, "Ask for end frequency")
+    field(VAL, "0")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(SDIS,"$(P)EnableSweepProgram" )
+    field(DISV, "0")
+}
+
+record(ao, "$(P)AskNumerofSteps"){
+    field(DESC, "Ask for number of steps ")
+    field(VAL, "0")
+    field(SDIS,"$(P)EnableSweepProgram" )
+    field(DISV, "0")
+}
+
+record(ao, "$(P)AskScanTimeAtEachStep"){
+    field(DESC, "Scan time required at each step")
+    field(VAL, "0")
+    field(EGU, "Sec")
+    field(PREC, "2")
+    field(SDIS,"$(P)EnableSweepProgram" )
+    field(DISV, "0")
+}
+
+#=============================================================
 
 
 
