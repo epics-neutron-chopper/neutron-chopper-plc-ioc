@@ -91,30 +91,27 @@ record(ai,"$(P)GetDriveTemperature"){
 
 record(mbbi, "$(P)CurrentStateInfo") {
     field(DESC, "Current State Information of the chopper")
-    field(DTYPE, "asynFloat64")
+    field(DTYP, "asynInt32")
     field(INP, "@asyn($(PORT),0,1)ADSPORT=$(ADSPORT=851)/GVL_EPICS.stDCU[1].ChopState_R?")
 
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(FRVL, "4")
+    field(FVVL, "5")
+    field(SXVL, "6")
+    field(ZRST, "Comms Not OK")
+    field(ONST, "Initialisation")
+    field(TWST, "Ready")
+    field(THST, "Rotating")
+    field(FRST, "Coasting")
+    field(FVST, "Stopping")
+    field(SXST, "E.stopping")
+    field(SCAN, "I/O Intr")
 }
 
 
-
-
-
-
-
-
-
-
-
-# setting the state of sweep programme (Not requested, Start, Stop)
-
-record (ao, "$(P)CallSweepProgram") {
-    field(DESC, "Calling the sweep programme")
-    field(ZRST, "No request")    # Option 0
-    field(ONST, "Start")   # Option 1
-    field(TWST, "Stop")    # Option 2
-     
-}
 
 # Monitoring how current frequency is different from the set frequency
 
@@ -179,6 +176,15 @@ record(calcout, "$(P)StabilityCondition") {
 }
 
 
+# setting the state of sweep programme (Not requested, Start, Stop)
+
+record (ao, "$(P)CallSweepProgram") {
+    field(DESC, "Calling the sweep programme")
+    field(ZRST, "No request")    # Option 0
+    field(ONST, "Start")   # Option 1
+    field(TWST, "Stop")    # Option 2
+     
+}
 
 
 
