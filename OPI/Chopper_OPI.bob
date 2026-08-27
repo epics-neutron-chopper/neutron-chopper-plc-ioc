@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
+  <background_color>
+    <color name="Button_Background" red="210" green="210" blue="210">
+    </color>
+  </background_color>
   <widget type="label" version="2.0.0">
     <name>Label_4</name>
     <text>Set Frequency</text>
     <x>60</x>
-    <y>40</y>
+    <y>200</y>
+    <width>130</width>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Entry</name>
     <pv_name>Chopper:SetFrequency</pv_name>
-    <x>230</x>
-    <y>40</y>
+    <x>190</x>
+    <y>200</y>
     <width>160</width>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_5</name>
-    <text>Set Frequency RB</text>
-    <x>60</x>
-    <y>80</y>
-    <width>140</width>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>Text Update</name>
-    <pv_name>Chopper:SetFrequencyRB</pv_name>
-    <x>230</x>
-    <y>80</y>
-    <width>220</width>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_7</name>
-    <text>Current Frequency</text>
-    <x>60</x>
-    <y>130</y>
-    <width>170</width>
-    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <background_color>
+      <color name="Header_ForeGround" red="255" green="255" blue="255">
+      </color>
+    </background_color>
   </widget>
   <widget type="progressbar" version="2.0.0">
     <name>Progress Bar</name>
     <pv_name>Chopper:GetCurrentFrequency</pv_name>
-    <x>230</x>
-    <y>130</y>
-    <width>190</width>
+    <x>130</x>
+    <y>270</y>
+    <width>450</width>
+    <height>40</height>
+    <fill_color>
+      <color name="OK" red="0" green="255" blue="0">
+      </color>
+    </fill_color>
     <limits_from_pv>false</limits_from_pv>
     <maximum>15.0</maximum>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_1</name>
     <pv_name>Chopper:GetCurrentFrequency</pv_name>
-    <x>270</x>
-    <y>130</y>
+    <x>210</x>
+    <y>280</y>
+    <width>370</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
     <background_color>
       <color name="Transparent" red="255" green="255" blue="255" alpha="0">
       </color>
@@ -57,20 +63,310 @@
   <widget type="label" version="2.0.0">
     <name>Label_8</name>
     <text>Send Command</text>
-    <x>60</x>
-    <y>210</y>
+    <x>400</x>
+    <y>130</y>
     <width>140</width>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
   </widget>
   <widget type="combo" version="2.0.0">
     <name>Combo Box_2</name>
     <pv_name>Chopper:SendCommandString</pv_name>
-    <x>230</x>
-    <y>200</y>
+    <x>550</x>
+    <y>120</y>
     <items>
       <item>item 0</item>
       <item>Start</item>
       <item>Stop</item>
       <item>Clear Alarm</item>
     </items>
+  </widget>
+  <widget type="multi_state_led" version="2.0.0">
+    <name>LED (Multi State)</name>
+    <pv_name>Chopper:StabilityAlarm</pv_name>
+    <x>440</x>
+    <y>200</y>
+    <width>140</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <states>
+      <state>
+        <value>Stable</value>
+        <label>Stable</label>
+        <color>
+          <color name="OK" red="0" green="255" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>Approaching</value>
+        <label>Approaching</label>
+        <color>
+          <color name="ActiveText" red="255" green="255" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>Off Target</value>
+        <label>Off Target</label>
+        <color>
+          <color name="MAJOR" red="255" green="0" blue="0">
+          </color>
+        </color>
+      </state>
+    </states>
+    <fallback_color>
+      <color name="Header_ForeGround" red="255" green="255" blue="255">
+      </color>
+    </fallback_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Plots</name>
+    <actions>
+      <action type="open_display">
+        <description>Open Display</description>
+        <file>Plot.bob</file>
+        <target>window</target>
+      </action>
+    </actions>
+    <text>Current Frequency Plot</text>
+    <x>410</x>
+    <y>470</y>
+    <width>190</width>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>Chopper State</text>
+    <x>120</x>
+    <y>140</y>
+    <width>150</width>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="multi_state_led" version="2.0.0">
+    <name>LED (Multi State)_1</name>
+    <pv_name>Chopper:CurrentStateInfo</pv_name>
+    <x>100</x>
+    <y>80</y>
+    <width>170</width>
+    <height>50</height>
+    <square>true</square>
+    <states>
+      <state>
+        <value>2</value>
+        <label>Ready</label>
+        <color>
+          <color name="OK" red="0" green="255" blue="0">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>3</value>
+        <label>Rotating</label>
+        <color>
+          <color red="153" green="102" blue="153">
+          </color>
+        </color>
+      </state>
+      <state>
+        <value>5</value>
+        <label>Stopping</label>
+        <color>
+          <color red="255" green="153" blue="128">
+          </color>
+        </color>
+      </state>
+    </states>
+    <fallback_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </fallback_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_9</name>
+    <text>Scan Enable</text>
+    <x>60</x>
+    <y>350</y>
+    <width>130</width>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button</name>
+    <pv_name>Chopper:EnableSweepProgram</pv_name>
+    <x>210</x>
+    <y>350</y>
+    <off_label>Disable</off_label>
+    <on_label>Enable</on_label>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_10</name>
+    <text>Start Frequency</text>
+    <x>60</x>
+    <y>390</y>
+    <width>170</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_3</name>
+    <pv_name>Chopper:AskStartFrequency</pv_name>
+    <x>210</x>
+    <y>390</y>
+    <width>140</width>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_11</name>
+    <text>End Frequency</text>
+    <x>60</x>
+    <y>420</y>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_4</name>
+    <pv_name>Chopper:AskEndFrequency</pv_name>
+    <x>210</x>
+    <y>420</y>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_12</name>
+    <text>Number of Steps</text>
+    <x>60</x>
+    <y>480</y>
+    <width>160</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_5</name>
+    <pv_name>Chopper:AskNumberOfSteps</pv_name>
+    <x>210</x>
+    <y>450</y>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_13</name>
+    <text>Scan time at each step</text>
+    <x>60</x>
+    <y>450</y>
+    <width>210</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_6</name>
+    <pv_name>Chopper:AskScanTimeAtEachStep</pv_name>
+    <x>210</x>
+    <y>480</y>
+    <width>140</width>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_14</name>
+    <text>Scanning Status</text>
+    <x>410</x>
+    <y>430</y>
+    <width>160</width>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <x>580</x>
+    <y>370</y>
+    <width>1</width>
+    <height>1</height>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED_1</name>
+    <pv_name>Chopper:ScanningStatus</pv_name>
+    <x>530</x>
+    <y>420</y>
+    <width>80</width>
+    <height>40</height>
+    <off_label>Scanning Done</off_label>
+    <off_color>
+      <color red="0" green="255" blue="0">
+      </color>
+    </off_color>
+    <on_label>Scanning</on_label>
+    <on_color>
+      <color red="204" green="179" blue="255">
+      </color>
+    </on_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_1</name>
+    <pv_name>Chopper:RunSweepProgram</pv_name>
+    <x>410</x>
+    <y>380</y>
+    <width>70</width>
+    <off_label>Stop</off_label>
+    <on_label>Run</on_label>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_15</name>
+    <text></text>
+    <x>40</x>
+    <y>270</y>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="open_display">
+        <description>Open Display</description>
+        <file>tolerance_display.bob</file>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>Tolerance Settings</text>
+    <x>590</x>
+    <y>170</y>
+    <width>70</width>
+    <height>70</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_16</name>
+    <text>Chopper Control</text>
+    <x>270</x>
+    <y>10</y>
+    <width>240</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="24.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_17</name>
+    <text>Mode : Epics</text>
+    <x>400</x>
+    <y>90</y>
+    <width>200</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
   </widget>
 </display>
