@@ -186,6 +186,7 @@ record (bo, "$(P)EnableSweepProgram") {
      
 }
 
+
 #============================================================
 record(ao, "$(P)AskStartFrequency"){
     field(DESC, "Ask user to give start frequency")
@@ -233,3 +234,11 @@ record (bo, "$(P)ScanningStatus") {
      
 }
 
+#Start running the sweep programme by executing python script
+
+record (bo, "$(P)RunSweepProgram") {
+    field(DESC, "Run sweep programme")
+    field(ZNAM, "Stop")    # Option 0
+    field(ONAM, "Run")   # Option 1
+    #field(TWST, "Stop")  # Option 2
+}
