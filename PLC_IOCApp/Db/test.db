@@ -197,18 +197,7 @@ record(ao, "$(P)AskStartFrequency"){
     field(DISV, "0")
 }
 
-record (ao, "$(P)SetStartFrequency"){
-    field(DESC, "Send Startpoint ")
-    field(INPA, "$(P)AskStartFrequency")
-    field(VAL, "A")
-    field(EGU, "Hz")
-    field(PREC, "2")
-    field(OUT, "$(P)SetFrequency")
-    field(SDIS,"$(P)EnableSweepProgram" )
-    field(DISV, "0")
-   
-}
-#==========================================================
+#==================================================
 
 record(ao, "$(P)AskEndFrequency"){
     field(DESC, "Ask for end frequency")
@@ -219,7 +208,7 @@ record(ao, "$(P)AskEndFrequency"){
     field(DISV, "0")
 }
 
-record(ao, "$(P)AskNumerofSteps"){
+record(ao, "$(P)AskNumberOfSteps"){
     field(DESC, "Ask for number of steps ")
     field(VAL, "0")
     field(SDIS,"$(P)EnableSweepProgram" )
@@ -235,7 +224,12 @@ record(ao, "$(P)AskScanTimeAtEachStep"){
     field(DISV, "0")
 }
 
-#=============================================================
 
-
+record (bo, "$(P)ScanningStatus") {
+    field(DESC, "Scanning Status")
+    field(ZNAM, "Scanning Done")    # Option 0
+    field(ONAM, "Scanning")   # Option 1
+    #field(TWST, "Stop")  # Option 2
+     
+}
 
