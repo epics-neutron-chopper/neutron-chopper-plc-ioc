@@ -251,7 +251,7 @@
     <name>Label_12</name>
     <text>Number of Steps</text>
     <x>60</x>
-    <y>480</y>
+    <y>450</y>
     <width>160</width>
   </widget>
   <widget type="textentry" version="3.0.0">
@@ -268,7 +268,7 @@
     <name>Label_13</name>
     <text>Scan time at each step</text>
     <x>60</x>
-    <y>450</y>
+    <y>480</y>
     <width>210</width>
   </widget>
   <widget type="textentry" version="3.0.0">
